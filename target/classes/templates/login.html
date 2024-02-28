@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!-- Add link to CSS files here (Optional) -->
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+    <form th:action="@{/perform_login}" method="post">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+        <!-- Optional: Display authentication error messages -->
+        <div th:if="${param.error}">
+            <p class="error">Invalid username or password.</p>
+        </div>
+        <!-- Optional: Display logout confirmation -->
+        <div th:if="${param.logout}">
+            <p>You have been logged out successfully.</p>
+        </div>
+    </form>
+</div>
+</body>
+</html>

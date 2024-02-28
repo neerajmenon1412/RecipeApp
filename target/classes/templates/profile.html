@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <!-- Add link to CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <!-- Navigation bar, logo, etc. -->
+</header>
+
+<main>
+  <section class="profile-info">
+    <h1>Welcome, <span th:text="${userEmail}">User's Email</span>!</h1>
+    <!-- Additional user information -->
+  </section>
+
+  <section class="user-recipes">
+    <h2>Your Recipes</h2>
+    <!-- List of recipes created by the user -->
+  </section>
+
+  <section class="create-recipe">
+    <h2>Create a New Recipe</h2>
+    <!-- Form for creating a new recipe -->
+  </section>
+</main>
+
+<footer>
+  <!-- Footer content -->
+</footer>
+
+<!-- Link to JavaScript file -->
+<script src="js/script.js"></script>
+</body>
+</html>
