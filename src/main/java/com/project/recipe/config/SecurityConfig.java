@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/auth/login").permitAll()// Allow public access to registration
                         .requestMatchers("/api/user/register").permitAll()
-                        .anyRequest().authenticated()); // All other requests need authentication
+                        .anyRequest().permitAll()); // All other requests need authentication
         http.addFilterBefore(jwtRequestFilterBean(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
@@ -46,8 +46,8 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080/api/recipes")); //URLs you want to allow
-        configuration.setAllowedMethods(Arrays.asList("GET","POST")); //methods you want to allow
+        configuration.setAllowedOrigins(Arrays.asList("*")); // Allow requests from all origins
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allow all methods
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

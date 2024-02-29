@@ -3,51 +3,41 @@ package com.project.recipe.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name = "recipes")
+@Table(name = "recipe")
 public class Recipe {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "recipe_id")
+    private Long recipeId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
+    @Column(name = "recipe_title", nullable = false)
     private String title;
+
+    @Column(name = "recipe_desc")
     private String description;
 
-    @ElementCollection
-    private List<String> ingredients = new ArrayList<>();
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
-    @ElementCollection
-    private List<String> measurements = new ArrayList<>();
+    @Column(name = "image1_url")
+    private String image1Url;
 
-    @Column(length = 10000)
-    private String cookingSteps;
+    @Column(name = "image2_url")
+    private String image2Url;
 
-    private String imageUrl;
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    // Getters and Setters
-
-    public Long getId() {
-        return id;
+    // Setters and getters
+    public Long getRecipeId() {
+        return recipeId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setRecipeId(Long recipeId) {
+        this.recipeId = recipeId;
     }
 
     public String getTitle() {
@@ -66,35 +56,35 @@ public class Recipe {
         this.description = description;
     }
 
-    public List<String> getIngredients() {
-        return ingredients;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setIngredients(List<String> ingredients) {
-        this.ingredients = ingredients;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public List<String> getMeasurements() {
-        return measurements;
+    public String getImage1Url() {
+        return image1Url;
     }
 
-    public void setMeasurements(List<String> measurements) {
-        this.measurements = measurements;
+    public void setImage1Url(String image1Url) {
+        this.image1Url = image1Url;
     }
 
-    public String getCookingSteps() {
-        return cookingSteps;
+    public String getImage2Url() {
+        return image2Url;
     }
 
-    public void setCookingSteps(String cookingSteps) {
-        this.cookingSteps = cookingSteps;
+    public void setImage2Url(String image2Url) {
+        this.image2Url = image2Url;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
