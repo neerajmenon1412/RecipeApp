@@ -28,18 +28,6 @@ public class JwtUtil {
         return jwt.getSubject();
     }
 
-    // This method is no longer needed, as it is specific to the io.jsonwebtoken library
-    // public String extractUsername(String token) {
-    //     return extractClaim(token, Claims::getSubject);
-    // }
-
-    // This method is no longer needed, as it is specific to the io.jsonwebtoken library
-    // public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-    //     final Claims claims = extractAllClaims(token);
-    //     return claimsResolver.apply(claims);
-    // }
-
-    // Replace this method with one suitable for com.auth0.jwt
     public DecodedJWT extractAllClaims(String token) {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secretKey)).build();
         return verifier.verify(token);
