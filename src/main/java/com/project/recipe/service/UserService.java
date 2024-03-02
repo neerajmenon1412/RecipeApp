@@ -18,6 +18,10 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+
     public User findByEmail(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
@@ -28,6 +32,7 @@ public class UserService {
             throw new RuntimeException("There is an account with that email address: " + userDto.getEmail());
         }
         User user = new User();
+        user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword())); // Assume this is for password_hash
         user.setBio(userDto.getBio());
