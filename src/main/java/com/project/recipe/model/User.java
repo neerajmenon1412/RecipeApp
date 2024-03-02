@@ -15,6 +15,8 @@ public class User {
 
     private String email;
 
+    private String name;
+
     @Column(name = "password_hash")
     private String password;
 
@@ -22,11 +24,11 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "user_allergy_info", // The correct join table name
-            joinColumns = @JoinColumn(name = "user_id"), // Correct column in join table referring to User
-            inverseJoinColumns = @JoinColumn(name = "allergy_info_id") // Correct column in join table referring to AllergyInfo
+            name = "User_allergy_info",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "allergen_id")
     )
-    private Set<AllergyInfo> allergyInfo = new HashSet<>();
+    private Set<AllergyInfo> allergies = new HashSet<>();
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -48,6 +50,14 @@ public class User {
         this.email = email;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -64,12 +74,12 @@ public class User {
         this.bio = bio;
     }
 
-    public Set<AllergyInfo> getAllergyInfo() {
-        return allergyInfo;
+    public Set<AllergyInfo> getAllergies() {
+        return allergies;
     }
 
-    public void setAllergyInfo(Set<AllergyInfo> allergyInfo) {
-        this.allergyInfo = allergyInfo;
+    public void setAllergies(Set<AllergyInfo> allergies) {
+        this.allergies = allergies;
     }
 
     public LocalDateTime getCreatedAt() {

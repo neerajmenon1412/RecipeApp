@@ -1,37 +1,58 @@
 package com.project.recipe.model;
 
-import jakarta.persistence.*;
-
+import java.util.HashSet;
 import java.util.Set;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Allergy_info")
 public class AllergyInfo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "allergen_id")
-    private Long id;
-    @Column(name = "allergen_name")
-    private String preferenceName;
+    private Long allergenId;
 
-    @ManyToMany(mappedBy = "allergyInfo")
-    private Set<User> users;
+    @Column(name = "allergen_name", nullable = false)
+    private String allergenName;
 
-    public Long getId() {
-        return id;
+    // Define the many-to-many relationship with User
+    @ManyToMany(mappedBy = "allergies")
+    private Set<User> users = new HashSet<>();
+
+    // Constructors, getters, and setters
+    public AllergyInfo() {
+        // Default constructor required by JPA
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public AllergyInfo(String allergenName) {
+        this.allergenName = allergenName;
     }
 
-    public String getPreferenceName() {
-        return preferenceName;
+    public AllergyInfo(int allergenId) {
+        this.allergenId = (long) allergenId;
     }
 
-    public void setPreferenceName(String preferenceName) {
-        this.preferenceName = preferenceName;
+    public Long getAllergenId() {
+        return allergenId;
+    }
+
+    public void setAllergenId(Long allergenId) {
+        this.allergenId = allergenId;
+    }
+
+    public String getAllergenName() {
+        return allergenName;
+    }
+
+    public void setAllergenName(String allergenName) {
+        this.allergenName = allergenName;
     }
 
     public Set<User> getUsers() {
@@ -42,4 +63,6 @@ public class AllergyInfo {
         this.users = users;
     }
 }
+
+
 
