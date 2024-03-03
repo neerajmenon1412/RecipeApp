@@ -8,6 +8,7 @@ import com.project.recipe.dto.RecipeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +20,26 @@ public class RecipeController {
 
     @Autowired
     private RecipeService recipeService;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @Autowired
     private UserService userService;
 
     @PostMapping("/create")
     public ResponseEntity<?> createRecipe(@RequestBody RecipeDto recipeDTO) {
         Recipe recipe = recipeService.createRecipe(recipeDTO);
+        // System.out.println(recipeDTO.getAllergies()+"\n*******************************************************");
+        for (Long allergenId : recipeDTO.getAllergies()) {
+            // System.out.println(allergenId + " - "+recipe.getRecipeId()+"********************************");
+            jdbcTemplate.update("INSERT INTO Recipe_allergy_info (recipe_id, allergen_id) VALUES (?, ?)", recipe.getRecipeId(), allergenId);
+        }
+        // System.out.println(recipeDTO.getCategories()+"\n*******************************************************");
+        for (Long categoryId : recipeDTO.getCategories()) {
+            // System.out.println(categoryId + " - "+recipe.getRecipeId()+"********************************");
+            jdbcTemplate.update("INSERT INTO Recipe_category (recipe_id, category_id) VALUES (?, ?)", recipe.getRecipeId(), categoryId);
+        }
         return new ResponseEntity<>(recipe, HttpStatus.CREATED);
     }
 
