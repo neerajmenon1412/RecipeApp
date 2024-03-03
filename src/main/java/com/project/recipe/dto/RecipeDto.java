@@ -1,11 +1,14 @@
 package com.project.recipe.dto;
 
+import java.util.List;
+
 public class RecipeDto {
     private String title;
     private String description;
     private Long userId;
     private String image1Url;
-    private String image2Url;
+    private List<Long> allergies;
+    private List<Long> categories;
 
     public String getTitle() {
         return title;
@@ -39,11 +42,19 @@ public class RecipeDto {
         this.image1Url = image1Url;
     }
 
-    public String getImage2Url() {
-        return image2Url;
+    public List<Long> getAllergies() {
+        return allergies;
     }
 
-    public void setImage2Url(String image2Url) {
-        this.image2Url = image2Url;
+    public void setAllergies(List<Long> allergies) {
+        this.allergies = allergies;
+    }
+
+    public List<Long> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Long> categories) {
+        this.categories = categories;
     }
 }

@@ -25,9 +25,6 @@ public class Recipe {
     @Column(name = "image1_url")
     private String image1Url;
 
-    @Column(name = "image2_url")
-    private String image2Url;
-
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -70,14 +67,6 @@ public class Recipe {
 
     public void setImage1Url(String image1Url) {
         this.image1Url = image1Url;
-    }
-
-    public String getImage2Url() {
-        return image2Url;
-    }
-
-    public void setImage2Url(String image2Url) {
-        this.image2Url = image2Url;
     }
 
     public LocalDateTime getCreatedAt() {
