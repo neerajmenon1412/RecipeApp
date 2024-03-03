@@ -1,7 +1,9 @@
 package com.project.recipe.controller;
 
 import com.project.recipe.model.Recipe;
+import com.project.recipe.model.RecipeRating;
 import com.project.recipe.model.User;
+import com.project.recipe.service.RecipeRatingService;
 import com.project.recipe.service.RecipeService;
 import com.project.recipe.service.UserService;
 import com.project.recipe.dto.RecipeDto;
@@ -12,6 +14,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -26,6 +30,8 @@ public class RecipeController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RecipeRatingService recipeRatingService;
 
     @PostMapping("/create")
     public ResponseEntity<?> createRecipe(@RequestBody RecipeDto recipeDTO) {
@@ -49,6 +55,27 @@ public class RecipeController {
         return ResponseEntity.ok(updatedRecipe);
     }
 
+    @GetMapping("/getRecipeDetails/{recipeId}")
+    public ResponseEntity<Recipe> getRecipeDetails(@PathVariable("recipeId") Long recipeId) {
+        Recipe recipe = recipeService.getRecipeById(recipeId);
+        if(recipe != null) {
+            return ResponseEntity.ok(recipe);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/getUserRecipes/{userId}")
+    public ResponseEntity<List<Recipe>> getUserRecipes(@PathVariable("userId") Long userId) {
+        List<Recipe> recipes = recipeService.getUserRecipes(userId);
+        return ResponseEntity.ok(recipes);
+    }
+
+    @GetMapping("/getRecipeReviews/{recipeId}")
+    public ResponseEntity<List<RecipeRating>> getRecipeReviews(@PathVariable Long recipeId) {
+        List<RecipeRating> reviews = recipeRatingService.findRatingsByRecipeId(recipeId);
+        return ResponseEntity.ok(reviews);
+    }
 
     // @GetMapping("/user")
     // public ResponseEntity<List<Recipe>> getUserRecipes(Principal principal) {

@@ -1,6 +1,7 @@
 package com.project.recipe.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -27,6 +28,15 @@ public class RecipeService {
         recipe.setImage1Url(recipeDTO.getImage1Url());
         recipe.setCreatedAt(LocalDateTime.now());
         return recipeRepository.save(recipe);
+    }
+
+    public Recipe getRecipeById(Long recipeId) {
+        return recipeRepository.findById(recipeId)
+                .orElseThrow(() -> new EntityNotFoundException("Recipe not found for ID: " + recipeId));
+    }
+
+    public List<Recipe> getUserRecipes(Long userId) {
+        return recipeRepository.findByUserId(userId);
     }
 
     public Recipe updateRecipe(Long recipeId, Recipe recipeDetails) {
