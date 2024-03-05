@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class AuthenticationService {
@@ -33,9 +34,16 @@ public class AuthenticationService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return JWT.create()
+                .withClaim("user_id", String.valueOf(user.getId()))
+                .withClaim("name", user.getName()) // Add name claim
                 .withSubject(user.getEmail())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 60 * 60 * 1000)) // 1 hour expiration
                 .sign(algorithm);
+    }
+
+    public User getUserByEmail(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        return userOptional.orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public User validateTokenAndGetUser(String token) {
@@ -66,3 +74,4 @@ public class AuthenticationService {
         }
     }
 }
+
