@@ -18,9 +18,9 @@ public class HomeController {
     @Autowired
     private RecipeService recipeService;
 
-    @GetMapping("/allergy/{userId}")
-    public ResponseEntity<List<Recipe>> getRecipesByUserAllergies(@PathVariable Long userId) {
-        List<Recipe> recipes = recipeService.getRecipesByUserAllergies(userId);
-        return ResponseEntity.ok(recipes);
-    }
+    // @GetMapping("/allergy/{userId}")
+    // public ResponseEntity<List<Recipe>> getRecipesByUserAllergies(@PathVariable Long userId) {
+    //     List<Recipe> recipes = recipeService.getRecipesByUserAllergies(userId);
+    //     return ResponseEntity.ok(recipes);
+    // }
 }
