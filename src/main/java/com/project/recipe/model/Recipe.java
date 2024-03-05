@@ -25,6 +25,11 @@ public class Recipe {
     @Column(name = "image1_url")
     private String image1Url;
 
+    @Column(name = "avg_rating")
+    private Double averageRating;
+
+    @Column(name = "no_of_ratings")
+    private Integer ratingCount;
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -75,5 +80,21 @@ public class Recipe {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public Integer getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setRatingCount(Integer ratingCount) {
+        this.ratingCount = ratingCount;
     }
 }
