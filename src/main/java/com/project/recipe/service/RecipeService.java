@@ -1,6 +1,7 @@
 package com.project.recipe.service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,12 @@ public class RecipeService {
 
     public List<Recipe> getRecipesByUserCategories(Long userId) {
         return recipeRepository.findRecipesByUserCategories(userId);
+    }
+
+    public List<Recipe> getAllRecipesSortedByPopularity() {
+        List<Recipe> recipes = recipeRepository.findAll();
+        recipes.sort(Comparator.comparingDouble(Recipe::calculatePopularityScore).reversed());
+        return recipes;
     }
 
     // public List<Recipe> getUserRecipes(User user) {
