@@ -97,4 +97,10 @@ public class Recipe {
     public void setRatingCount(Integer ratingCount) {
         this.ratingCount = ratingCount;
     }
+
+    public double calculatePopularityScore() {
+        double weightAvgRating = 0.7;
+        double weightNumberOfRatings = 0.3;
+        return (weightAvgRating * averageRating) + (weightNumberOfRatings * ratingCount);
+    }
 }

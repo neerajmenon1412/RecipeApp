@@ -30,4 +30,10 @@ public class HomeController {
         List<Recipe> recipes = recipeService.getRecipesByUserCategories(userId);
         return ResponseEntity.ok(recipes);
     }
+
+    @GetMapping("/popular")
+    public ResponseEntity<List<Recipe>> getPopularRecipes() {
+        List<Recipe> recipes = recipeService.getAllRecipesSortedByPopularity();
+        return ResponseEntity.ok(recipes);
+    }
 }
