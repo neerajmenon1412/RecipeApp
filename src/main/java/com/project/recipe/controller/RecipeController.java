@@ -39,12 +39,12 @@ public class RecipeController {
         // System.out.println(recipeDTO.getAllergies()+"\n*******************************************************");
         for (Long allergenId : recipeDTO.getAllergies()) {
             // System.out.println(allergenId + " - "+recipe.getRecipeId()+"********************************");
-            jdbcTemplate.update("INSERT INTO Recipe_allergy_info (recipe_id, allergen_id) VALUES (?, ?)", recipe.getRecipeId(), allergenId);
+            jdbcTemplate.update("INSERT INTO recipe_allergy_info (recipe_id, allergen_id) VALUES (?, ?)", recipe.getRecipeId(), allergenId);
         }
         // System.out.println(recipeDTO.getCategories()+"\n*******************************************************");
         for (Long categoryId : recipeDTO.getCategories()) {
             // System.out.println(categoryId + " - "+recipe.getRecipeId()+"********************************");
-            jdbcTemplate.update("INSERT INTO Recipe_category (recipe_id, category_id) VALUES (?, ?)", recipe.getRecipeId(), categoryId);
+            jdbcTemplate.update("INSERT INTO recipe_category (recipe_id, category_id) VALUES (?, ?)", recipe.getRecipeId(), categoryId);
         }
         return new ResponseEntity<>(recipe, HttpStatus.CREATED);
     }

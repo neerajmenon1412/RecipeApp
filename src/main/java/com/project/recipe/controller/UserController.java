@@ -41,17 +41,17 @@ public class UserController {
             System.out.println(registrationDto.getAllergies()+"\n*******************************************************");
             for (Long allergenId : registrationDto.getAllergies()) {
                 System.out.println(allergenId + " - "+registeredUser.getId()+"********************************");
-                jdbcTemplate.update("INSERT INTO User_allergy_info (user_id, allergen_id) VALUES (?, ?)", registeredUser.getId(), allergenId);
+                jdbcTemplate.update("INSERT INTO user_allergy_info (user_id, allergen_id) VALUES (?, ?)", registeredUser.getId(), allergenId);
             }
             System.out.println(registrationDto.getCategories()+"\n*******************************************************");
             for (Long categoryId : registrationDto.getCategories()) {
                 System.out.println(categoryId + " - "+registeredUser.getId()+"********************************");
-                jdbcTemplate.update("INSERT INTO User_category (user_id, category_id) VALUES (?, ?)", registeredUser.getId(), categoryId);
+                jdbcTemplate.update("INSERT INTO user_category (user_id, category_id) VALUES (?, ?)", registeredUser.getId(), categoryId);
             }             
             return ResponseEntity.status(HttpStatus.CREATED).body("User has been registered successfully!");
         }
         catch(Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to register user");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to register user\n"+e);
         }
     }
 

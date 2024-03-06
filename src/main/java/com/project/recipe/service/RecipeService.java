@@ -25,6 +25,8 @@ public class RecipeService {
         recipe.setUserId(recipeDTO.getUserId());
         recipe.setImage1Url(recipeDTO.getImage1Url());
         recipe.setCreatedAt(LocalDateTime.now());
+        recipe.setAverageRating(0.0);
+        recipe.setRatingCount(0);
         return recipeRepository.save(recipe);
     }
 
