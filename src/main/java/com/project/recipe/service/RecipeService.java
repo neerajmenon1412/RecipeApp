@@ -4,12 +4,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import com.project.recipe.dto.RecipeDto;
 import com.project.recipe.model.Recipe;
-import com.project.recipe.model.User;
 import com.project.recipe.repository.RecipeRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -49,6 +47,14 @@ public class RecipeService {
         existingRecipe.setDescription(recipeDetails.getDescription());
 
         return recipeRepository.save(existingRecipe);
+    }
+
+    public List<Recipe> getRecipesByUserAllergies(Long userId) {
+        return recipeRepository.findRecipesByUserAllergies(userId);
+    }
+
+    public List<Recipe> getRecipesByUserCategories(Long userId) {
+        return recipeRepository.findRecipesByUserCategories(userId);
     }
 
     // public List<Recipe> getUserRecipes(User user) {

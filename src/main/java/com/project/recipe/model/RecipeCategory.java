@@ -3,26 +3,26 @@ package com.project.recipe.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "recipe_allergy_info")
-@IdClass(RecipeAllergyInfoId.class)
-public class RecipeAllergyInfo {
+@Table(name = "recipe_category")
+@IdClass(RecipeCategoryId.class)
+public class RecipeCategory {
 
     @Id
     @Column(name = "recipe_id")
     private Long recipeId;
 
     @Id
-    @Column(name = "allergen_id")
-    private Long allergenId;
+    @Column(name = "category_id")
+    private Long categoryId;
 
     // Constructors
 
-    public RecipeAllergyInfo() {
+    public RecipeCategory() {
     }
 
-    public RecipeAllergyInfo(Long recipeId, Long allergenId) {
+    public RecipeCategory(Long recipeId, Long categoryId) {
         this.recipeId = recipeId;
-        this.allergenId = allergenId;
+        this.categoryId = categoryId;
     }
 
     // Getters and Setters
@@ -36,10 +36,11 @@ public class RecipeAllergyInfo {
     }
 
     public Long getAllergenId() {
-        return allergenId;
+        return categoryId;
     }
 
-    public void setAllergenId(Long allergenId) {
-        this.allergenId = allergenId;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }
+
