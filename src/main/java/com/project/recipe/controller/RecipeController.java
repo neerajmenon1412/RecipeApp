@@ -1,23 +1,31 @@
 package com.project.recipe.controller;
 
-import com.project.recipe.model.Recipe;
-import com.project.recipe.model.RecipeRating;
-import com.project.recipe.model.User;
-import com.project.recipe.service.RecipeRatingService;
-import com.project.recipe.service.RecipeService;
-import com.project.recipe.service.UserService;
-import com.project.recipe.dto.RecipeDto;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.project.recipe.dto.RecipeDto;
+import com.project.recipe.model.Recipe;
+import com.project.recipe.model.RecipeRating;
+import com.project.recipe.model.User;
+import com.project.recipe.service.RecipeRatingService;
+import com.project.recipe.service.RecipeService;
+import com.project.recipe.service.UserService;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/recipes")
 public class RecipeController {
