@@ -66,7 +66,8 @@ public class RecipeService {
         return recipes;
     }
 
-    // public List<Recipe> getUserRecipes(User user) {
-    //     return recipeRepository.findByUserId(user.getId());
-    // }
+    public List<Recipe> searchRecipes(String query) {
+        // Assuming you have a method in your repository to search by recipe title
+        return recipeRepository.findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(query, query);
+    }
 }

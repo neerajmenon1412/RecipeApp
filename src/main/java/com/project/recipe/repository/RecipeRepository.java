@@ -27,6 +27,10 @@ import jakarta.transaction.Transactional;
         @Transactional
         @Query("UPDATE Recipe r SET r.averageRating = :average, r.ratingCount = :count WHERE r.recipeId = :recipeId")
         void updateRatingAndCount(@Param("recipeId") Long recipeId, @Param("average") double average, @Param("count") int count);
+
+        //List<Recipe> findByTitleContainingIgnoreCase(String title);
+
+        List<Recipe> findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String title, String description);
     }
 
 
