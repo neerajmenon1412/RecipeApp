@@ -1,8 +1,13 @@
 package com.project.recipe.model;
 
-import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "recipe")
@@ -30,8 +35,12 @@ public class Recipe {
 
     @Column(name = "no_of_ratings")
     private Integer ratingCount;
+    
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(name = "cooking_time")
+    private Integer cookingTime;
 
     // Setters and getters
     public Long getRecipeId() {
@@ -80,6 +89,14 @@ public class Recipe {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Integer getCookingTime() {
+        return cookingTime;
+    }
+
+    public void setCookingTime(Integer cookingTime) {
+        this.cookingTime = cookingTime;
     }
 
     public Double getAverageRating() {

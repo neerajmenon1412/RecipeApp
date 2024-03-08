@@ -28,6 +28,7 @@ public class RecipeService {
         recipe.setCreatedAt(LocalDateTime.now());
         recipe.setAverageRating(0.0);
         recipe.setRatingCount(0);
+        recipe.setCookingTime(recipeDTO.getCookingTime());
         return recipeRepository.save(recipe);
     }
 
