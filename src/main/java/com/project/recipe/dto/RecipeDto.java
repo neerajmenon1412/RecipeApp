@@ -7,6 +7,7 @@ public class RecipeDto {
     private String description;
     private Long userId;
     private String image1Url;
+    private Integer cookingTime;
     private List<Long> allergies;
     private List<Long> categories;
 
@@ -40,6 +41,14 @@ public class RecipeDto {
 
     public void setImage1Url(String image1Url) {
         this.image1Url = image1Url;
+    }
+
+    public Integer getCookingTime() {
+        return cookingTime;
+    }
+
+    public void setCookingTime(Integer cookingTime) {
+        this.cookingTime = cookingTime;
     }
 
     public List<Long> getAllergies() {
