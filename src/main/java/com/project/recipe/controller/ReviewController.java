@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/review")
@@ -40,5 +42,19 @@ public class ReviewController {
         recipeRatingService.updateRecipeRatingAndCount(reviewDto.getRecipeId(), reviewDto.getRating());
 
         return ResponseEntity.ok("Review saved successfully");
+    }
+
+    @GetMapping("/recipe/{recipeId}")
+    public ResponseEntity<List<ReviewDto>> getReviewsByRecipeId(@PathVariable Long recipeId) {
+        List<ReviewDto> reviewDtos = recipeRatingService.findRatingsByRecipeId(recipeId).stream()
+                .map(rating -> {
+                    ReviewDto dto = new ReviewDto();
+                    dto.setRecipeId(rating.getRecipeId());
+                    dto.setUserId(rating.getUserId());
+                    dto.setRating(rating.getRating().intValue());
+                    dto.setReview(rating.getReview());
+                    return dto;
+                }).collect(Collectors.toList());
+        return ResponseEntity.ok(reviewDtos);
     }
 }
