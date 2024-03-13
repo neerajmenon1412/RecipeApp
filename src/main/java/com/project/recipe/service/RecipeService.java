@@ -46,9 +46,9 @@ public class RecipeService {
         Recipe existingRecipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new EntityNotFoundException("Recipe not found with id: " + recipeId));
 
-        // Proceed with the update if currentUser is the owner
         existingRecipe.setTitle(recipeDetails.getTitle());
         existingRecipe.setDescription(recipeDetails.getDescription());
+        existingRecipe.setCookingTime(recipeDetails.getCookingTime());
 
         return recipeRepository.save(existingRecipe);
     }
