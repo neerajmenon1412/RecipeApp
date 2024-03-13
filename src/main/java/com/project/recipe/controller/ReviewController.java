@@ -33,6 +33,7 @@ public class ReviewController {
         recipeRating.setRecipeId(reviewDto.getRecipeId());
         recipeRating.setUserId(reviewDto.getUserId());
         recipeRating.setRating(reviewDto.getRating());
+        recipeRating.setReviewerName(reviewDto.getReviewerName());
         recipeRating.setReview(reviewDto.getReview());
         recipeRating.setCreatedAt(LocalDateTime.now());
 
