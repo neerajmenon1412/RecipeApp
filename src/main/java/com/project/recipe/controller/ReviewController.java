@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/review")
 public class ReviewController {
@@ -53,6 +54,7 @@ public class ReviewController {
                     dto.setUserId(rating.getUserId());
                     dto.setRating(rating.getRating().intValue());
                     dto.setReview(rating.getReview());
+                    dto.setReviewerName(rating.getReviewerName());
                     return dto;
                 }).collect(Collectors.toList());
         return ResponseEntity.ok(reviewDtos);

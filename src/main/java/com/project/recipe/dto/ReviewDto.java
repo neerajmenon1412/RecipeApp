@@ -5,6 +5,7 @@ public class ReviewDto {
     private Long userId;
     private Integer rating;
     private String review;
+    private String reviewerName;
 
     public Long getRecipeId() {
         return recipeId;
@@ -36,5 +37,13 @@ public class ReviewDto {
 
     public void setReview(String review) {
         this.review = review;
+    }
+
+    public String getReviewerName() {
+        return reviewerName;
+    }
+
+    public void setReviewerName(String reviewerName) {
+        this.reviewerName = reviewerName;
     }
 }

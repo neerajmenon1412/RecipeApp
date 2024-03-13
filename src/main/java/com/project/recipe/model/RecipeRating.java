@@ -1,11 +1,16 @@
 package com.project.recipe.model;
 
-import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 @Entity
-@Table(name = "Recipe_rating")
+@Table(name = "recipe_rating")
 public class RecipeRating {
 
     @Id
@@ -25,15 +30,19 @@ public class RecipeRating {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(name = "reviewer_name")
+    private String reviewerName;
+
     // Constructors, getters, and setters
 
-    public RecipeRating(Long id, Long recipeId, Long userId, Double rating, String review, LocalDateTime createdAt) {
+    public RecipeRating(Long id, Long recipeId, Long userId, Double rating, String review, LocalDateTime createdAt, String reviewerName) {
         this.id = id;
         this.recipeId = recipeId;
         this.userId = userId;
         this.rating = rating;
         this.review = review;
         this.createdAt = createdAt;
+        this.reviewerName = reviewerName;
     }
 
     public RecipeRating() {
@@ -86,5 +95,13 @@ public class RecipeRating {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getReviewerName() {
+        return reviewerName;
+    }
+
+    public void setReviewerName(String reviewerName) {
+        this.reviewerName = reviewerName;
     }
 }
